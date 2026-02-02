@@ -31,7 +31,7 @@ export default [
       },
     },
     rules: {
-      "cypress/no-unnecessary-waiting": "warn",
+      "cypress/no-unnecessary-waiting": "off",
     },
   },
 
