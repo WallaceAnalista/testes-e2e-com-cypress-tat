@@ -12,7 +12,6 @@
     "test:tablet": "cypress run --config viewportWidth=767,viewportHeight=480 --spec cypress/e2e/authenticated.cy.js",
     "test:cloud": "cypress run --record --tag 'desktop'",
     "test:tablet:cloud": "cypress run --record --tag 'tablet' --config viewportWidth=767,viewportHeight=480 --spec cypress/e2e/authenticated.cy.js"
-
   },
   "keywords": [],
   "author": "Wallace Oliveira",
@@ -24,7 +23,7 @@
     "cypress": "^12.15.0",
     "cypress-iframe": "^1.0.1",
     "cypress-mailosaur": "^2.13.0",
-    "eslint": "^8.57.1",
+    "eslint": "^9.39.2",
     "eslint-plugin-cypress": "^2.13.3",
     "globals": "^17.0.0"
   }
