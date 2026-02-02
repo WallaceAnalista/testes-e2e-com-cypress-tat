@@ -13,12 +13,13 @@ const compat = new FlatCompat({
 });
 
 export default [
-  // eslint:recommended convertido para flat config
   ...compat.extends("eslint:recommended"),
 
+  // Arquivos JS em geral
   {
     files: ["**/*.{js,mjs,cjs}"],
     languageOptions: {
+      sourceType: "module",
       globals: {
         ...globals.browser,
         ...globals.node,
@@ -26,8 +27,24 @@ export default [
     },
   },
 
+  // Arquivos Cypress
   {
-    files: ["**/*.js"],
+    files: ["cypress/**/*.{js,mjs}"],
+    plugins: {
+      cypress: compat.plugins?.cypress,
+    },
+    languageOptions: {
+      globals: {
+        ...globals.mocha,
+        cy: "readonly",
+        Cypress: "readonly",
+      },
+    },
+  },
+
+  // Config CommonJS
+  {
+    files: ["cypress.config.js"],
     languageOptions: {
       sourceType: "commonjs",
     },
