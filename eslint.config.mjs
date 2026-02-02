@@ -1,21 +1,11 @@
 import js from "@eslint/js";
 import globals from "globals";
-import { FlatCompat } from "@eslint/eslintrc";
-import path from "path";
-import { fileURLToPath } from "url";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-  recommendedConfig: js.configs.recommended,
-});
+import cypress from "eslint-plugin-cypress";
 
 export default [
-  ...compat.extends("eslint:recommended"),
+  js.configs.recommended,
 
-  // Arquivos JS em geral
+  // JS geral
   {
     files: ["**/*.{js,mjs,cjs}"],
     languageOptions: {
@@ -27,11 +17,11 @@ export default [
     },
   },
 
-  // Arquivos Cypress
+  // Cypress specs e support
   {
     files: ["cypress/**/*.{js,mjs}"],
     plugins: {
-      cypress: compat.plugins?.cypress,
+      cypress,
     },
     languageOptions: {
       globals: {
@@ -40,9 +30,12 @@ export default [
         Cypress: "readonly",
       },
     },
+    rules: {
+      "cypress/no-unnecessary-waiting": "warn",
+    },
   },
 
-  // Config CommonJS
+  // Config principal em CommonJS
   {
     files: ["cypress.config.js"],
     languageOptions: {
